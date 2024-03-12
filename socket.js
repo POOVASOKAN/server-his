@@ -16,6 +16,8 @@ export function startSocketServer(expressServer) {
   const io = new Server(expressServer, {
     cors: {
       origin: ["http://localhost:5173", "http://localhost:5174"],
+      methods: "GET,HEAD,PUT,PATCH,POST,DELETE",
+      credentials: true,
     },
   });
 
@@ -56,7 +58,6 @@ export function startSocketServer(expressServer) {
         }
       });
     });
-
 
     socket.on("disconnect", () => {
       console.log("Client Disconnected");
