@@ -4,9 +4,7 @@
   "description": "hospital management system ",
   "main": "index.js",
   "type": "module",
-  "engines": {
-    "node": "18.x"
-  },
+  
   "scripts": {
     "test": "jest",
     "start": "node index.js",

@@ -1,10 +1,10 @@
 import User from "../models/User.js";
 import bcrypt from "bcrypt";
-import dotenv from "dotenv";
+// import dotenv from "dotenv";
 import jwt from "jsonwebtoken";
 import nodemailer from "nodemailer";
 
-dotenv.config();
+// dotenv.config();
 export const login = async (req, res) => {
   try {
     const { email, password } = req.body;
@@ -57,6 +57,7 @@ export const login = async (req, res) => {
       },
     });
   } catch (err) {
+    console.log(err);
     return res.status(500).json({ success: false, message: err.message });
   }
 };
