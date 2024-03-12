@@ -16,9 +16,9 @@ export function startSocketServer(expressServer) {
   const io = new Server(expressServer, {
     cors: {
       origin: [
+        "https://client-his.onrender.com",
         "http://localhost:5173",
         "http://localhost:5174",
-        "https://client-his.onrender.com",
       ],
       methods: "GET,HEAD,PUT,PATCH,POST,DELETE",
       credentials: true,
