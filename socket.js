@@ -15,7 +15,11 @@ const myS3 = new aws.S3();
 export function startSocketServer(expressServer) {
   const io = new Server(expressServer, {
     cors: {
-      origin: ["http://localhost:5173", "http://localhost:5174"],
+      origin: [
+        "http://localhost:5173",
+        "http://localhost:5174",
+        "https://client-his.onrender.com",
+      ],
       methods: "GET,HEAD,PUT,PATCH,POST,DELETE",
       credentials: true,
     },
