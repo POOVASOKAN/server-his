@@ -146,7 +146,7 @@ export const forgotPassword = async (req, res) => {
   try {
     const { email } = req.body;
     //check if the user exists in the Database
-    const user = await findOne({ email });
+    const user = await User.findOne({ email });
     if (!user) {
       return res.status(400).json({
         success: false,
@@ -208,7 +208,6 @@ export const resetPassword = async (req, res) => {
       .json({ success: false, message: "Link expired or corrupted" });
   }
 };
-
 
 export const changePassword = async (req, res) => {
   try {
