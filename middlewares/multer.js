@@ -6,9 +6,9 @@ import dotenv from "dotenv";
 // export const upload = multer({ dest: "profile/" });
 dotenv.config();
 aws.config.update({
-  secretAccessKey: process.env.AWS_ACCESS_SECRET,
-  accessKeyId: process.env.AWS_ACCESS_KEY,
-  region: process.env.AWS_S3_REGION,
+  secretAccessKey: process.env.MYAWS_ACCESS_SECRET,
+  accessKeyId: process.env.MYAWS_ACCESS_KEY,
+  region: process.env.MYAWS_S3_REGION,
 });
 
 const myS3 = new aws.S3();
