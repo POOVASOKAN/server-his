@@ -118,7 +118,7 @@ export const openSlot = async (req, res) => {
   const { start, end } = req.body;
   console.log(start, end);
   //is the slot already open
-  const slot = await Appointment.findOne({
+  const slot = await Appointments.findOne({
     openedBy: req.user._id,
     start,
     end,
@@ -129,7 +129,7 @@ export const openSlot = async (req, res) => {
       .status(400)
       .json({ success: false, message: "This slot already opened" });
   }
-  const newSlot = await Appointment.create({
+  const newSlot = await Appointments.create({
     openedBy: req.user._id,
     start,
     end,
@@ -149,7 +149,7 @@ export const getAllDoctorSlots = async (req, res) => {
   //   isBooked: true,
   // });
   // console.log(t);
-  const slots = await Appointment.find({ openedBy: req.user._id }).populate({
+  const slots = await Appointments.find({ openedBy: req.user._id }).populate({
     path: "bookedBy", // Field to populate
     select: "name email imgUrl", // Select the fields you want to populate
   });
@@ -159,7 +159,7 @@ export const getAllDoctorSlots = async (req, res) => {
 //Delete: Doctor can delete the slots
 export const deleteSlot = async (req, res) => {
   const { slotId } = req.params;
-  const del = await Appointment.findOneAndDelete({
+  const del = await Appointments.findOneAndDelete({
     _id: slotId,
     openedBy: req.user._id,
     isBooked: false,
@@ -174,7 +174,10 @@ export const deleteSlot = async (req, res) => {
 export const getAllDoctorAvailabeSlots = async (req, res) => {
   const { doctorId } = req.params;
   console.log(doctorId);
-  const slots = await Appointment.find({ openedBy: doctorId, isBooked: false });
+  const slots = await Appointments.find({
+    openedBy: doctorId,
+    isBooked: false,
+  });
   return res.status(200).json({ success: true, slots });
 };
 
